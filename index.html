@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Manager</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="title">Student Manager App</h1>
+
+    <!-- Add Student -->
+    <form action="/add" method="POST" class="form-box">
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter Student Name"
+            required
+        >
+
+        <input
+            type="number"
+            name="marks"
+            placeholder="Enter Marks"
+            required
+        >
+
+        <button type="submit">
+            Add Student
+        </button>
+
+    </form>
+
+
+    <!-- Check Result -->
+    <form action="/result" method="POST" class="form-box">
+
+        <input
+            type="text"
+            name="check_name"
+            placeholder="Check Student Result"
+            required
+        >
+
+        <button type="submit">
+            Check Result
+        </button>
+
+    </form>
+
+
+    <!-- Delete Student -->
+    <form action="/delete" method="POST" class="form-box">
+
+        <input
+            type="text"
+            name="delete_name"
+            placeholder="Delete Student"
+            required
+        >
+
+        <button type="submit">
+            Delete Student
+        </button>
+
+    </form>
+
+
+    <!-- Update Student -->
+    <form action="/update" method="POST" class="form-box">
+
+        <input
+            type="text"
+            name="update_name"
+            placeholder="Student Name"
+            required
+        >
+
+        <input
+            type="number"
+            name="update_marks"
+            placeholder="New Marks"
+            required
+        >
+
+        <button type="submit">
+            Update Marks
+        </button>
+
+    </form>
+
+
+    <!-- Result Message -->
+    {% if result %}
+
+    <div class="student-card">
+        <div class="student-name">
+            {{ result }}
+        </div>
+    </div>
+
+    {% endif %}
+
+
+    <!-- Student List -->
+    <div class="student-list">
+
+        {% for name, marks in students.items() %}
+
+        <div class="student-card">
+
+            <div class="student-name">
+                {{ name }}
+            </div>
+
+            <div class="marks">
+                {{ marks }} Marks
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
